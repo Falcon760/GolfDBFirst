@@ -11,33 +11,24 @@ namespace WebApplication4
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class ScoreCard
     {
+        public ScoreCard()
+        {
+            this.Scores = new HashSet<Score>();
+        }
+    
         public int Id { get; set; }
         public Nullable<int> TotalScore { get; set; }
-        public Nullable<int> ScoreHole1 { get; set; }
-        public Nullable<int> ScoreHole2 { get; set; }
-        public Nullable<int> ScoreHole3 { get; set; }
-        public Nullable<int> ScoreHole4 { get; set; }
-        public Nullable<int> ScoreHole5 { get; set; }
-        public Nullable<int> ScoreHole6 { get; set; }
-        public Nullable<int> ScoreHole7 { get; set; }
-        public Nullable<int> ScoreHole8 { get; set; }
-        public Nullable<int> ScoreHole9 { get; set; }
-        public Nullable<int> ScoreHole10 { get; set; }
-        public Nullable<int> ScoreHole11 { get; set; }
-        public Nullable<int> ScoreHole12 { get; set; }
-        public Nullable<int> ScoreHole13 { get; set; }
-        public Nullable<int> ScoreHole14 { get; set; }
-        public Nullable<int> ScoreHole15 { get; set; }
-        public Nullable<int> ScoreHole16 { get; set; }
-        public Nullable<int> ScoreHole17 { get; set; }
-        public Nullable<int> ScoreHole18 { get; set; }
+        [DisplayName("Player Name")]
         public int PlayerId { get; set; }
+        [DisplayName("Round Name")]
         public int RoundId { get; set; }
     
         public virtual Player Player { get; set; }
         public virtual Round Round { get; set; }
+        public virtual ICollection<Score> Scores { get; set; }
     }
 }

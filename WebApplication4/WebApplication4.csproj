@@ -127,6 +127,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\RoundController.cs" />
+    <Compile Include="Controllers\ScoreCardController.cs" />
     <Compile Include="Controllers\ScoreController.cs" />
     <Compile Include="Course.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -158,6 +159,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Round.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Score.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ScoreCard.cs">
@@ -219,11 +223,6 @@
     <Content Include="Views\Course\Details.cshtml" />
     <Content Include="Views\Course\Edit.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
-    <Content Include="Views\Hole\Create.cshtml" />
-    <Content Include="Views\Hole\Delete.cshtml" />
-    <Content Include="Views\Hole\Details.cshtml" />
-    <Content Include="Views\Hole\Edit.cshtml" />
-    <Content Include="Views\Hole\Index.cshtml" />
     <Content Include="Views\Player\Create.cshtml" />
     <Content Include="Views\Player\Delete.cshtml" />
     <Content Include="Views\Player\Details.cshtml" />
@@ -234,6 +233,16 @@
     <Content Include="Views\Round\Details.cshtml" />
     <Content Include="Views\Round\Edit.cshtml" />
     <Content Include="Views\Round\Index.cshtml" />
+    <Content Include="Views\ScoreCard\Create.cshtml" />
+    <Content Include="Views\ScoreCard\Delete.cshtml" />
+    <Content Include="Views\ScoreCard\Details.cshtml" />
+    <Content Include="Views\ScoreCard\Edit.cshtml" />
+    <Content Include="Views\ScoreCard\Index.cshtml" />
+    <Content Include="Views\Hole\Create.cshtml" />
+    <Content Include="Views\Hole\Delete.cshtml" />
+    <Content Include="Views\Hole\Details.cshtml" />
+    <Content Include="Views\Hole\Edit.cshtml" />
+    <Content Include="Views\Hole\Index.cshtml" />
     <Content Include="Views\Score\Create.cshtml" />
     <Content Include="Views\Score\Delete.cshtml" />
     <Content Include="Views\Score\Details.cshtml" />

@@ -55,6 +55,6 @@ C:\Users\Steve\Documents\GitHub\GolfDBFirst\WebApplication4\bin\System.Web.WebPa
 C:\Users\Steve\Documents\GitHub\GolfDBFirst\WebApplication4\bin\System.Web.WebPages.Razor.xml
 C:\Users\Steve\Documents\GitHub\GolfDBFirst\WebApplication4\bin\Newtonsoft.Json.xml
 C:\Users\Steve\Documents\GitHub\GolfDBFirst\WebApplication4\bin\Antlr3.Runtime.pdb
-C:\Users\Steve\Documents\GitHub\GolfDBFirst\WebApplication4\obj\Debug\WebApplication4.csprojResolveAssemblyReference.cache
 C:\Users\Steve\Documents\GitHub\GolfDBFirst\WebApplication4\obj\Debug\WebApplication4.dll
 C:\Users\Steve\Documents\GitHub\GolfDBFirst\WebApplication4\obj\Debug\WebApplication4.pdb
+C:\Users\Steve\Documents\GitHub\GolfDBFirst\WebApplication4\obj\Debug\WebApplication4.csprojResolveAssemblyReference.cache

@@ -40,6 +40,7 @@ namespace WebApplication4.Controllers
         public ActionResult Create()
         {
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
+            ViewBag.Score = new SelectList(db.Scores, "id", "id");
             return View();
         }
 
@@ -48,16 +49,17 @@ namespace WebApplication4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Number,Par,Type,TotalYards,YardsFromBlue,YardsFromWhite,YardsFromRed,CourseId")] Hole hole)
+        public ActionResult Create([Bind(Include="Id,Number,Par,TotalYards,YardsFromBlue,YardsFromWhite,YardsFromRed,CourseId,Score,Name,_Name")] Hole hole)
         {
             if (ModelState.IsValid)
             {
                 db.Holes.Add(hole);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Round");
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", hole.CourseId);
+            ViewBag.Score = new SelectList(db.Scores, "id", "id", hole.Score);
             return View(hole);
         }
 
@@ -74,6 +76,7 @@ namespace WebApplication4.Controllers
                 return HttpNotFound();
             }
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", hole.CourseId);
+            ViewBag.Score = new SelectList(db.Scores, "id", "id", hole.Score);
             return View(hole);
         }
 
@@ -82,15 +85,16 @@ namespace WebApplication4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Number,Par,Type,TotalYards,YardsFromBlue,YardsFromWhite,YardsFromRed,CourseId")] Hole hole)
+        public ActionResult Edit([Bind(Include="Id,Number,Par,TotalYards,YardsFromBlue,YardsFromWhite,YardsFromRed,CourseId,Score,Name,_Name")] Hole hole)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(hole).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Round");
             }
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", hole.CourseId);
+            ViewBag.Score = new SelectList(db.Scores, "id", "id", hole.Score);
             return View(hole);
         }
 
@@ -117,7 +121,7 @@ namespace WebApplication4.Controllers
             Hole hole = db.Holes.Find(id);
             db.Holes.Remove(hole);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Round");
         }
 
         protected override void Dispose(bool disposing)

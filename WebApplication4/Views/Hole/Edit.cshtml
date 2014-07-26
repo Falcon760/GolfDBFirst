@@ -34,14 +34,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Type)
-                @Html.ValidationMessageFor(model => model.Type)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.TotalYards, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TotalYards)
@@ -74,12 +66,28 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CourseId, "CourseId", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CourseId, "Course Name", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("CourseId", String.Empty)
                 @Html.ValidationMessageFor(model => model.CourseId)
             </div>
         </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Score, "Score", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Score", String.Empty)
+                @Html.ValidationMessageFor(model => model.Score)
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

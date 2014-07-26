@@ -20,14 +20,16 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Number" Type="Int32" Nullable="false" />
     <Property Name="Par" Type="Int32" Nullable="false" />
-    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TotalYards" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TotalYards" Type="Int32" />
     <Property Name="YardsFromBlue" Type="Int32" />
     <Property Name="YardsFromWhite" Type="Int32" />
     <Property Name="YardsFromRed" Type="Int32" />
     <Property Name="CourseId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Course" Relationship="Self.FK_Hole_Course" FromRole="Hole" ToRole="Course" />
     <NavigationProperty Name="Rounds" Relationship="Self.RoundHole" FromRole="Hole" ToRole="Round" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Scores" Relationship="GolfDbModel.FK_Score_Hole" FromRole="Hole" ToRole="Score" />
   </EntityType>
   <EntityType Name="Player">
     <Key>
@@ -59,28 +61,11 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TotalScore" Type="Int32" />
-    <Property Name="ScoreHole1" Type="Int32" />
-    <Property Name="ScoreHole2" Type="Int32" />
-    <Property Name="ScoreHole3" Type="Int32" />
-    <Property Name="ScoreHole4" Type="Int32" />
-    <Property Name="ScoreHole5" Type="Int32" />
-    <Property Name="ScoreHole6" Type="Int32" />
-    <Property Name="ScoreHole7" Type="Int32" />
-    <Property Name="ScoreHole8" Type="Int32" />
-    <Property Name="ScoreHole9" Type="Int32" />
-    <Property Name="ScoreHole10" Type="Int32" />
-    <Property Name="ScoreHole11" Type="Int32" />
-    <Property Name="ScoreHole12" Type="Int32" />
-    <Property Name="ScoreHole13" Type="Int32" />
-    <Property Name="ScoreHole14" Type="Int32" />
-    <Property Name="ScoreHole15" Type="Int32" />
-    <Property Name="ScoreHole16" Type="Int32" />
-    <Property Name="ScoreHole17" Type="Int32" />
-    <Property Name="ScoreHole18" Type="Int32" />
     <Property Name="PlayerId" Type="Int32" Nullable="false" />
     <Property Name="RoundId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Player" Relationship="Self.FK_ScoreCard_Player1" FromRole="ScoreCard" ToRole="Player" />
     <NavigationProperty Name="Round" Relationship="Self.FK_ScoreCard_Round" FromRole="ScoreCard" ToRole="Round" />
+    <NavigationProperty Name="Scores" Relationship="GolfDbModel.FK_Score_ScoreCard" FromRole="ScoreCard" ToRole="Score" />
   </EntityType>
   <Association Name="FK_Hole_Course">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
@@ -168,5 +153,49 @@
       <End Role="Player" EntitySet="Players" />
       <End Role="Round" EntitySet="Rounds" />
     </AssociationSet>
+    <EntitySet Name="Scores" EntityType="GolfDbModel.Score" />
+    <AssociationSet Name="FK_Score_ScoreCard" Association="GolfDbModel.FK_Score_ScoreCard">
+      <End Role="ScoreCard" EntitySet="ScoreCards" />
+      <End Role="Score" EntitySet="Scores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Score_Hole" Association="GolfDbModel.FK_Score_Hole">
+      <End Role="Hole" EntitySet="Holes" />
+      <End Role="Score" EntitySet="Scores" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Score">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ScoreCardid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ScoreCard" Relationship="GolfDbModel.FK_Score_ScoreCard" FromRole="Score" ToRole="ScoreCard" />
+    <Property Name="Strokes" Type="Int32" />
+    <Property Name="Holeid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hole" Relationship="GolfDbModel.FK_Score_Hole" FromRole="Score" ToRole="Hole" />
+  </EntityType>
+  <Association Name="FK_Score_ScoreCard">
+    <End Type="GolfDbModel.ScoreCard" Role="ScoreCard" Multiplicity="1" />
+    <End Type="GolfDbModel.Score" Role="Score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScoreCard">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Score">
+        <PropertyRef Name="ScoreCardid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Score_Hole">
+    <End Type="GolfDbModel.Hole" Role="Hole" Multiplicity="1" />
+    <End Type="GolfDbModel.Score" Role="Score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Score">
+        <PropertyRef Name="Holeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -27,14 +27,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.TotalYards)
         </dt>
 
@@ -67,12 +59,28 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._Name)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Course.Name)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Course.Name)
         </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Score1.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score1.id)
+        </dd>*@
 
     </dl>
 </div>

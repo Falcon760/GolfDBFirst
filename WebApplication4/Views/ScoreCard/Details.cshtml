@@ -1,0 +1,91 @@
+﻿@model WebApplication4.ScoreCard
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ScoreCard</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Player.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Round.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Round.Name)
+        </dd>
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<hr />
+
+@*<div class="panel panel-default">
+    <div class="panel-heading">Strokes per Hole</div>
+    <div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            @foreach (var item in Model.Round.Holes)
+            {
+
+                <td> Hole - @Html.DisplayFor(Modelitem => item.Number)</td>
+
+            }
+        </tr>
+        <tr>
+            @foreach (var item in Model.Scores)
+            {
+
+                <td>Strokes: @Html.DisplayFor(Modelitem => item.Strokes)</td>
+
+
+
+            }
+        </tr>
+        <tr><td>@Html.ActionLink("Add Score", "Create", "Score", new { id = Model.Id }, null)</td></tr>
+    </table>
+        </div>
+    </div>*@
+
+<table class="table table-bordered">
+@foreach (var item in Model.Round.Holes) {
+    <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item._Name)
+        </th>
+        <td>
+            @foreach (var score in Model.Scores)
+            {
+
+            @Html.DisplayFor(ModelItem => score.Strokes);
+
+
+
+            }
+        </td>
+    </tr>
+}
+
+</table>

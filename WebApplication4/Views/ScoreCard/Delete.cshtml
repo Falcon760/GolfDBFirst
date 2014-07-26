@@ -1,4 +1,4 @@
-﻿@model WebApplication4.Score
+﻿@model WebApplication4.ScoreCard
 
 @{
     ViewBag.Title = "Delete";
@@ -8,31 +8,31 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Score</h4>
+    <h4>ScoreCard</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Strokes)
+            @Html.DisplayNameFor(model => model.TotalScore)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Strokes)
+            @Html.DisplayFor(model => model.TotalScore)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ScoreCard.Id)
+            @Html.DisplayNameFor(model => model.Player.LastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ScoreCard.Id)
+            @Html.DisplayFor(model => model.Player.LastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Hole.Name)
+            @Html.DisplayNameFor(model => model.Round.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Hole.Name)
+            @Html.DisplayFor(model => model.Round.Name)
         </dd>
 
     </dl>

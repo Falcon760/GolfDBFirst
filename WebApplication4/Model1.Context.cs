@@ -30,5 +30,6 @@ namespace WebApplication4
         public DbSet<Player> Players { get; set; }
         public DbSet<Round> Rounds { get; set; }
         public DbSet<ScoreCard> ScoreCards { get; set; }
+        public DbSet<Score> Scores { get; set; }
     }
 }

@@ -10,116 +10,116 @@ using WebApplication4;
 
 namespace WebApplication4.Controllers
 {
-    public class ScoreController : Controller
+    public class ScoreCardController : Controller
     {
         private GolfDbEntities db = new GolfDbEntities();
 
-        // GET: /Score/
+        // GET: /ScoreCard/
         public ActionResult Index()
         {
-            var scores = db.Scores.Include(s => s.ScoreCard).Include(s => s.Hole);
-            return View(scores.ToList());
+            var scorecards = db.ScoreCards.Include(s => s.Player).Include(s => s.Round);
+            return View(scorecards.ToList());
         }
 
-        // GET: /Score/Details/5
+        // GET: /ScoreCard/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Score score = db.Scores.Find(id);
-            if (score == null)
+            ScoreCard scorecard = db.ScoreCards.Find(id);
+            if (scorecard == null)
             {
                 return HttpNotFound();
             }
-            return View(score);
+            return View(scorecard);
         }
 
-        // GET: /Score/Create
+        // GET: /ScoreCard/Create
         public ActionResult Create()
         {
-            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Id");
-            ViewBag.Holeid = new SelectList(db.Holes, "Id", "_Name");
+            ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName");
+            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Id");
             return View();
         }
 
-        // POST: /Score/Create
+        // POST: /ScoreCard/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,ScoreCardid,Strokes,Holeid")] Score score)
+        public ActionResult Create([Bind(Include="Id,TotalScore,PlayerId,RoundId")] ScoreCard scorecard)
         {
             if (ModelState.IsValid)
             {
-                db.Scores.Add(score);
+                db.ScoreCards.Add(scorecard);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Id", score.ScoreCardid);
-            ViewBag.Holeid = new SelectList(db.Holes, "Id", "_Name", score.Holeid);
-            return View(score);
+            ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName", scorecard.PlayerId);
+            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Id", scorecard.RoundId);
+            return View(scorecard);
         }
 
-        // GET: /Score/Edit/5
+        // GET: /ScoreCard/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Score score = db.Scores.Find(id);
-            if (score == null)
+            ScoreCard scorecard = db.ScoreCards.Find(id);
+            if (scorecard == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ScoreCardid = new SelectList(db.Rounds, "Id", "Name", score.ScoreCardid);
-            ViewBag.Holeid = new SelectList(db.Holes, "Id", "_Name", score.Holeid);
-            return View(score);
+            ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName", scorecard.PlayerId);
+            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Id", scorecard.RoundId);
+            return View(scorecard);
         }
 
-        // POST: /Score/Edit/5
+        // POST: /ScoreCard/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,ScoreCardid,Strokes,Holeid")] Score score)
+        public ActionResult Edit([Bind(Include="Id,TotalScore,PlayerId,RoundId")] ScoreCard scorecard)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(score).State = EntityState.Modified;
+                db.Entry(scorecard).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Id", score.ScoreCardid);
-            ViewBag.Holeid = new SelectList(db.Holes, "Id", "_Name", score.Holeid);
-            return View(score);
+            ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName", scorecard.PlayerId);
+            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Id", scorecard.RoundId);
+            return View(scorecard);
         }
 
-        // GET: /Score/Delete/5
+        // GET: /ScoreCard/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Score score = db.Scores.Find(id);
-            if (score == null)
+            ScoreCard scorecard = db.ScoreCards.Find(id);
+            if (scorecard == null)
             {
                 return HttpNotFound();
             }
-            return View(score);
+            return View(scorecard);
         }
 
-        // POST: /Score/Delete/5
+        // POST: /ScoreCard/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Score score = db.Scores.Find(id);
-            db.Scores.Remove(score);
+            ScoreCard scorecard = db.ScoreCards.Find(id);
+            db.ScoreCards.Remove(scorecard);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,4 +1,4 @@
-﻿@model WebApplication4.Score
+﻿@model WebApplication4.ScoreCard
 
 @{
     ViewBag.Title = "Edit";
@@ -12,32 +12,32 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Score</h4>
+        <h4>ScoreCard</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ScoreCardid, "ScoreCardid", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TotalScore, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ScoreCardid", String.Empty)
-                @Html.ValidationMessageFor(model => model.ScoreCardid)
+                @Html.EditorFor(model => model.TotalScore)
+                @Html.ValidationMessageFor(model => model.TotalScore)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Strokes, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PlayerId, "PlayerId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Strokes)
-                @Html.ValidationMessageFor(model => model.Strokes)
+                @Html.DropDownList("PlayerId", String.Empty)
+                @Html.ValidationMessageFor(model => model.PlayerId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Holeid, "Holeid", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoundId, "RoundId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Holeid", String.Empty)
-                @Html.ValidationMessageFor(model => model.Holeid)
+                @Html.DropDownList("RoundId", String.Empty)
+                @Html.ValidationMessageFor(model => model.RoundId)
             </div>
         </div>
 

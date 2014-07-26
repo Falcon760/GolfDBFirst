@@ -1,4 +1,4 @@
-﻿@model WebApplication4.ScoreCard
+﻿@model WebApplication4.Score
 
 @{
     ViewBag.Title = "Details";
@@ -7,180 +7,36 @@
 <h2>Details</h2>
 
 <div>
-    <h4>ScoreCard</h4>
+    <h4>Score</h4>
 	<hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TotalScore)
+            @Html.DisplayNameFor(model => model.Strokes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TotalScore)
+            @Html.DisplayFor(model => model.Strokes)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole1)
+            @Html.DisplayNameFor(model => model.ScoreCard.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ScoreHole1)
+            @Html.DisplayFor(model => model.ScoreCard.Id)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole2)
+            @Html.DisplayNameFor(model => model.Hole.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ScoreHole2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole3)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole3)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole4)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole4)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole5)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole5)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole6)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole6)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole7)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole7)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole8)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole8)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole9)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole9)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole10)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole10)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole11)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole11)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole12)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole12)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole13)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole13)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole14)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole14)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole15)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole15)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole16)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole16)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole17)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole17)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScoreHole18)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScoreHole18)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Player.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Player.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Round.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Round.Name)
+            @Html.DisplayFor(model => model.Hole.Name)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

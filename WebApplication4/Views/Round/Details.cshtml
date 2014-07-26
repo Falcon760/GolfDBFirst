@@ -1,0 +1,102 @@
+﻿@model WebApplication4.Round
+
+@{
+    ViewBag.Title = "Golf Round Details";
+}
+
+
+<div>
+    <h3>Golf Round Details</h3>
+
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoundDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoundDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+    </dl>
+        <p>
+            @Html.ActionLink("Edit Round", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Number
+        </th>
+        <th>
+            Par
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Total Yards
+        </th>
+        <th>
+            Yards From Blue
+        </th>
+        <th>
+            Yards From White
+        </th>
+        <th>
+            Yards From Red
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Course.Holes)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Par)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalYards)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YardsFromBlue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YardsFromWhite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YardsFromRed)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Hole", new { id = item.Id }, null) |
+                @Html.ActionLink("Details", "Details", "Hole", new { id = item.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Hole", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>

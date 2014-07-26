@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GolfDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Par" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="TotalYards" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="YardsFromBlue" Type="int" />
+    <Property Name="YardsFromWhite" Type="int" />
+    <Property Name="YardsFromRed" Type="int" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Handicap" Type="int" />
+  </EntityType>
+  <EntityType Name="Round">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoundDate" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoundHole">
+    <Key>
+      <PropertyRef Name="RoundId" />
+      <PropertyRef Name="HoleId" />
+    </Key>
+    <Property Name="RoundId" Type="int" Nullable="false" />
+    <Property Name="HoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoundPlayer">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+      <PropertyRef Name="RoundId" />
+    </Key>
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="RoundId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScoreCard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TotalScore" Type="int" />
+    <Property Name="ScoreHole1" Type="int" />
+    <Property Name="ScoreHole2" Type="int" />
+    <Property Name="ScoreHole3" Type="int" />
+    <Property Name="ScoreHole4" Type="int" />
+    <Property Name="ScoreHole5" Type="int" />
+    <Property Name="ScoreHole6" Type="int" />
+    <Property Name="ScoreHole7" Type="int" />
+    <Property Name="ScoreHole8" Type="int" />
+    <Property Name="ScoreHole9" Type="int" />
+    <Property Name="ScoreHole10" Type="int" />
+    <Property Name="ScoreHole11" Type="int" />
+    <Property Name="ScoreHole12" Type="int" />
+    <Property Name="ScoreHole13" Type="int" />
+    <Property Name="ScoreHole14" Type="int" />
+    <Property Name="ScoreHole15" Type="int" />
+    <Property Name="ScoreHole16" Type="int" />
+    <Property Name="ScoreHole17" Type="int" />
+    <Property Name="ScoreHole18" Type="int" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="RoundId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Hole_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Hole" Type="Self.Hole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hole">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Round_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Round" Type="Self.Round" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Round">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoundHole_Hole">
+    <End Role="Hole" Type="Self.Hole" Multiplicity="1" />
+    <End Role="RoundHole" Type="Self.RoundHole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoundHole">
+        <PropertyRef Name="HoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoundHole_Round">
+    <End Role="Round" Type="Self.Round" Multiplicity="1" />
+    <End Role="RoundHole" Type="Self.RoundHole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Round">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoundHole">
+        <PropertyRef Name="RoundId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoundPlayer_Player">
+    <End Role="Player" Type="Self.Player" Multiplicity="1" />
+    <End Role="RoundPlayer" Type="Self.RoundPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoundPlayer">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoundPlayer_Round">
+    <End Role="Round" Type="Self.Round" Multiplicity="1" />
+    <End Role="RoundPlayer" Type="Self.RoundPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Round">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoundPlayer">
+        <PropertyRef Name="RoundId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScoreCard_Player1">
+    <End Role="Player" Type="Self.Player" Multiplicity="1" />
+    <End Role="ScoreCard" Type="Self.ScoreCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScoreCard">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScoreCard_Round">
+    <End Role="Round" Type="Self.Round" Multiplicity="1" />
+    <End Role="ScoreCard" Type="Self.ScoreCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Round">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScoreCard">
+        <PropertyRef Name="RoundId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GolfDbModelStoreContainer">
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hole" EntityType="Self.Hole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Round" EntityType="Self.Round" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoundHole" EntityType="Self.RoundHole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoundPlayer" EntityType="Self.RoundPlayer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScoreCard" EntityType="Self.ScoreCard" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Hole_Course" Association="Self.FK_Hole_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Hole" EntitySet="Hole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Round_Course" Association="Self.FK_Round_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Round" EntitySet="Round" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoundHole_Hole" Association="Self.FK_RoundHole_Hole">
+      <End Role="Hole" EntitySet="Hole" />
+      <End Role="RoundHole" EntitySet="RoundHole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoundHole_Round" Association="Self.FK_RoundHole_Round">
+      <End Role="Round" EntitySet="Round" />
+      <End Role="RoundHole" EntitySet="RoundHole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoundPlayer_Player" Association="Self.FK_RoundPlayer_Player">
+      <End Role="Player" EntitySet="Player" />
+      <End Role="RoundPlayer" EntitySet="RoundPlayer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoundPlayer_Round" Association="Self.FK_RoundPlayer_Round">
+      <End Role="Round" EntitySet="Round" />
+      <End Role="RoundPlayer" EntitySet="RoundPlayer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScoreCard_Player1" Association="Self.FK_ScoreCard_Player1">
+      <End Role="Player" EntitySet="Player" />
+      <End Role="ScoreCard" EntitySet="ScoreCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScoreCard_Round" Association="Self.FK_ScoreCard_Round">
+      <End Role="Round" EntitySet="Round" />
+      <End Role="ScoreCard" EntitySet="ScoreCard" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

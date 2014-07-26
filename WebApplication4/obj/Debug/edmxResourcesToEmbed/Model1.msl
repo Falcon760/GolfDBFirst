@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GolfDbModelStoreContainer" CdmEntityContainer="GolfDbEntities">
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="GolfDbModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Holes">
+      <EntityTypeMapping TypeName="GolfDbModel.Hole">
+        <MappingFragment StoreEntitySet="Hole">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Par" ColumnName="Par" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="TotalYards" ColumnName="TotalYards" />
+          <ScalarProperty Name="YardsFromBlue" ColumnName="YardsFromBlue" />
+          <ScalarProperty Name="YardsFromWhite" ColumnName="YardsFromWhite" />
+          <ScalarProperty Name="YardsFromRed" ColumnName="YardsFromRed" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="GolfDbModel.Player">
+        <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Handicap" ColumnName="Handicap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rounds">
+      <EntityTypeMapping TypeName="GolfDbModel.Round">
+        <MappingFragment StoreEntitySet="Round">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoundDate" ColumnName="RoundDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScoreCards">
+      <EntityTypeMapping TypeName="GolfDbModel.ScoreCard">
+        <MappingFragment StoreEntitySet="ScoreCard">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TotalScore" ColumnName="TotalScore" />
+          <ScalarProperty Name="ScoreHole1" ColumnName="ScoreHole1" />
+          <ScalarProperty Name="ScoreHole2" ColumnName="ScoreHole2" />
+          <ScalarProperty Name="ScoreHole3" ColumnName="ScoreHole3" />
+          <ScalarProperty Name="ScoreHole4" ColumnName="ScoreHole4" />
+          <ScalarProperty Name="ScoreHole5" ColumnName="ScoreHole5" />
+          <ScalarProperty Name="ScoreHole6" ColumnName="ScoreHole6" />
+          <ScalarProperty Name="ScoreHole7" ColumnName="ScoreHole7" />
+          <ScalarProperty Name="ScoreHole8" ColumnName="ScoreHole8" />
+          <ScalarProperty Name="ScoreHole9" ColumnName="ScoreHole9" />
+          <ScalarProperty Name="ScoreHole10" ColumnName="ScoreHole10" />
+          <ScalarProperty Name="ScoreHole11" ColumnName="ScoreHole11" />
+          <ScalarProperty Name="ScoreHole12" ColumnName="ScoreHole12" />
+          <ScalarProperty Name="ScoreHole13" ColumnName="ScoreHole13" />
+          <ScalarProperty Name="ScoreHole14" ColumnName="ScoreHole14" />
+          <ScalarProperty Name="ScoreHole15" ColumnName="ScoreHole15" />
+          <ScalarProperty Name="ScoreHole16" ColumnName="ScoreHole16" />
+          <ScalarProperty Name="ScoreHole17" ColumnName="ScoreHole17" />
+          <ScalarProperty Name="ScoreHole18" ColumnName="ScoreHole18" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="RoundId" ColumnName="RoundId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="RoundHole" TypeName="GolfDbModel.RoundHole" StoreEntitySet="RoundHole">
+      <EndProperty Name="Hole">
+        <ScalarProperty Name="Id" ColumnName="HoleId" />
+      </EndProperty>
+      <EndProperty Name="Round">
+        <ScalarProperty Name="Id" ColumnName="RoundId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RoundPlayer" TypeName="GolfDbModel.RoundPlayer" StoreEntitySet="RoundPlayer">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="Id" ColumnName="PlayerId" />
+      </EndProperty>
+      <EndProperty Name="Round">
+        <ScalarProperty Name="Id" ColumnName="RoundId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

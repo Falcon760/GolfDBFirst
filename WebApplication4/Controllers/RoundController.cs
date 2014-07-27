@@ -13,6 +13,35 @@ namespace WebApplication4.Controllers
     public class RoundController : Controller
     {
         private GolfDbEntities db = new GolfDbEntities();
+        //Search Action method created by Me
+
+        public ActionResult Search(string SearchBox)
+        {
+            var items = from t in db.Rounds select t;
+            DateTime searchDate;
+            if(!String.IsNullOrEmpty(SearchBox))
+            {
+                bool isDateSearch = DateTime.TryParse(SearchBox, out searchDate);
+                if (isDateSearch)
+                {
+
+                    items = items.Where(s => s.RoundDate.Equals(searchDate));
+                }
+
+                else
+                {
+                    items = from t in db.Rounds
+                             where
+                                 t.Name.Contains(SearchBox)
+                                 //|| t.RoundDate.Contains(SearchBox)
+                                 || t.Course.Name.Contains(SearchBox)
+                             select t;
+
+                }
+            }
+            return View("Index", items.ToList());
+        }
+  
 
         // GET: /Round/
         public ActionResult Index()

@@ -12,6 +12,7 @@ namespace WebApplication4
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Course
     {
@@ -22,7 +23,7 @@ namespace WebApplication4
         }
     
         public int Id { get; set; }
-        [DisplayName("Course Name")]
+        [Display(Name="Course Name")]
         public string Name { get; set; }
         public string City { get; set; }
         public string State { get; set; }

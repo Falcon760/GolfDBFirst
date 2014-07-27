@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<WebApplication4.Round>
-
+@using WebApplication4.Models;
 @{
     ViewBag.Title = "Golf Rounds";
 }
@@ -9,6 +9,13 @@
 <p>
     @Html.ActionLink("Create New Round", "Create")
 </p>
+
+@using (Html.BeginForm("Search", "Round"))
+{
+    @Html.Editor("SearchBox")
+    <input type="submit" value="Search" />
+    
+}
 <table class="table">
     <tr>
         <th>
@@ -29,7 +36,8 @@
             @Html.DisplayFor(modelItem => item.RoundDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @*@Html.DisplayFor(modelItem => item.Name)*@
+            @Html.Truncate(item.Name,20)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Course.Name)

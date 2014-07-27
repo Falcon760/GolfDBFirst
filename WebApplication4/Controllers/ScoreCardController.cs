@@ -113,7 +113,27 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Score scores = db.Scores.Find(id)
+//            [HttpPost, ActionName("Delete")]
+//[ValidateAntiForgeryToken]
+//public ActionResult DeleteConfirmed(int id)
+//{ Instructor instructor = db.Instructors 
+//    .Include(i => i.OfficeAssignment) 
+//    .Where(i => i.ID == id) .Single();
+//instructor.OfficeAssignment = null;
+//db.Instructors.Remove(instructor);
+//var department = db.Departments 
+            //.Where(d => d.InstructorID == id) 
+            //.SingleOrDefault(); 
+            //if (department != null) 
+            //{ department.InstructorID = null; }
+//db.SaveChanges();
+//return RedirectToAction("Index");
+//}
+
+
+
+
+            
             ScoreCard scorecard = db.ScoreCards.Find(id);
             db.ScoreCards.Remove(scorecard);
             db.SaveChanges();

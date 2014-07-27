@@ -23,12 +23,9 @@ namespace WebApplication4
         }
     
         public int Id { get; set; }
-        public System.DateTime RoundDate { get; set; }
-        [DisplayName("Round Name")]
         public string Name { get; set; }
-        [DisplayName("Course Name")]
+        public System.DateTime RoundDate { get; set; }
         public int CourseId { get; set; }
-    
         public virtual Course Course { get; set; }
         public virtual ICollection<ScoreCard> ScoreCards { get; set; }
         public virtual ICollection<Hole> Holes { get; set; }

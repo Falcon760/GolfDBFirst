@@ -11,6 +11,13 @@
 	<hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.TotalScore)
         </dt>
 
@@ -70,20 +77,20 @@
     </div>*@
 
 <table class="table table-bordered">
-@foreach (var item in Model.Round.Holes) {
+@foreach (var item in Model.Scores) {
     <tr>
         <th>
-            @Html.DisplayFor(modelItem => item._Name)
+            Hole Name
         </th>
+        <th>Score
+        </th>
+    </tr>
+    <tr>
         <td>
-            @foreach (var score in Model.Scores)
-            {
-
-            @Html.DisplayFor(ModelItem => score.Strokes);
-
-
-
-            }
+            @Html.DisplayFor(modelItem => item.Hole._Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Strokes)
         </td>
     </tr>
 }

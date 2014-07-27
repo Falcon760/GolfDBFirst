@@ -21,12 +21,12 @@ namespace WebApplication4
         }
     
         public int Id { get; set; }
+        public string Name { get; set; }
         public Nullable<int> TotalScore { get; set; }
-        [DisplayName("Player Name")]
+
         public int PlayerId { get; set; }
-        [DisplayName("Round Name")]
+
         public int RoundId { get; set; }
-    
         public virtual Player Player { get; set; }
         public virtual Round Round { get; set; }
         public virtual ICollection<Score> Scores { get; set; }

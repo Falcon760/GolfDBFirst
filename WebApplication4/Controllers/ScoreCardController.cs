@@ -40,7 +40,7 @@ namespace WebApplication4.Controllers
         public ActionResult Create()
         {
             ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName");
-            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Id");
+            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Name");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace WebApplication4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,TotalScore,PlayerId,RoundId")] ScoreCard scorecard)
+        public ActionResult Create([Bind(Include="Id,TotalScore,PlayerId,RoundId,Name")] ScoreCard scorecard)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace WebApplication4.Controllers
             }
 
             ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName", scorecard.PlayerId);
-            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Id", scorecard.RoundId);
+            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Name", scorecard.RoundId);
             return View(scorecard);
         }
 
@@ -76,7 +76,7 @@ namespace WebApplication4.Controllers
                 return HttpNotFound();
             }
             ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName", scorecard.PlayerId);
-            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Id", scorecard.RoundId);
+            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Name", scorecard.RoundId);
             return View(scorecard);
         }
 
@@ -85,7 +85,7 @@ namespace WebApplication4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,TotalScore,PlayerId,RoundId")] ScoreCard scorecard)
+        public ActionResult Edit([Bind(Include="Id,TotalScore,PlayerId,RoundId,Name")] ScoreCard scorecard)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName", scorecard.PlayerId);
-            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Id", scorecard.RoundId);
+            ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Name", scorecard.RoundId);
             return View(scorecard);
         }
 

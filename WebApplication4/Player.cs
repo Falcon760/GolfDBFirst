@@ -11,6 +11,7 @@ namespace WebApplication4
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Player
     {
@@ -23,6 +24,7 @@ namespace WebApplication4
         public int Id { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+        public string FullName { get { return FirstName + " " + LastName; } }
         public Nullable<int> Handicap { get; set; }
     
         public virtual ICollection<ScoreCard> ScoreCards { get; set; }

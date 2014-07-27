@@ -55,7 +55,7 @@ namespace WebApplication4.Controllers
             {
                 db.Scores.Add(score);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "ScoreCard");
             }
 
             ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Name", score.ScoreCardid);

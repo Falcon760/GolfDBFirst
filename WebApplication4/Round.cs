@@ -26,9 +26,11 @@ namespace WebApplication4
         public int Id { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name="Date of Round")]
         public System.DateTime RoundDate { get; set; }
-        [DisplayName("Round Name")]
+        [Display(Name="Round Name")]
         public string Name { get; set; }
+        [Display(Name="Course Name")]
         public int CourseId { get; set; }
        
         public virtual Course Course { get; set; }

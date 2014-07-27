@@ -173,6 +173,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\golf1.JPG" />
     <Content Include="Content\golf2.JPG" />
+    <Content Include="Content\golf3.JPG" />
+    <Content Include="Content\golf5.JPG" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -14,6 +14,7 @@ namespace WebApplication4
         }
     
         public int Id { get; set; }
+        [Display(Name="Total Score")]
         [DisplayFormat(DataFormatString="{0:# Strokes}", ApplyFormatInEditMode=true, NullDisplayText="No Total Score")]
         public Nullable<int> TotalScore { get; set; }
         public int PlayerId { get; set; }

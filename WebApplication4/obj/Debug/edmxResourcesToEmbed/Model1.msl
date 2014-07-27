@@ -52,6 +52,7 @@
     <EntitySetMapping Name="ScoreCards">
       <EntityTypeMapping TypeName="GolfDbModel.ScoreCard">
         <MappingFragment StoreEntitySet="ScoreCard">
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TotalScore" ColumnName="TotalScore" />
           <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />

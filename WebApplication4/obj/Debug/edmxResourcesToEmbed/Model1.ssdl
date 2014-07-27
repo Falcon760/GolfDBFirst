@@ -18,7 +18,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Number" Type="int" Nullable="false" />
     <Property Name="Par" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="TotalYards" Type="int" />
     <Property Name="YardsFromBlue" Type="int" />
     <Property Name="YardsFromWhite" Type="int" />
@@ -74,6 +74,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TotalScore" Type="int" />
     <Property Name="PlayerId" Type="int" Nullable="false" />
     <Property Name="RoundId" Type="int" Nullable="false" />

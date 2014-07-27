@@ -28,7 +28,7 @@
     <NavigationProperty Name="Course" Relationship="Self.FK_Hole_Course" FromRole="Hole" ToRole="Course" />
     <NavigationProperty Name="Rounds" Relationship="Self.RoundHole" FromRole="Hole" ToRole="Round" />
     <Property Name="Score" Type="Int32" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Scores" Relationship="GolfDbModel.FK_Score_Hole" FromRole="Hole" ToRole="Score" />
   </EntityType>
   <EntityType Name="Player">
@@ -48,7 +48,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RoundDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CourseId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Course" Relationship="Self.FK_Round_Course" FromRole="Round" ToRole="Course" />
     <NavigationProperty Name="ScoreCards" Relationship="Self.FK_ScoreCard_Round" FromRole="Round" ToRole="ScoreCard" />
@@ -66,6 +66,7 @@
     <NavigationProperty Name="Player" Relationship="Self.FK_ScoreCard_Player1" FromRole="ScoreCard" ToRole="Player" />
     <NavigationProperty Name="Round" Relationship="Self.FK_ScoreCard_Round" FromRole="ScoreCard" ToRole="Round" />
     <NavigationProperty Name="Scores" Relationship="GolfDbModel.FK_Score_ScoreCard" FromRole="ScoreCard" ToRole="Score" />
+    <Property Name="Name" Type="String" Nullable="false" />
   </EntityType>
   <Association Name="FK_Hole_Course">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />

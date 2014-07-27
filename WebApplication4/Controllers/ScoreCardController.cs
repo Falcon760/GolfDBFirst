@@ -44,12 +44,10 @@ namespace WebApplication4.Controllers
             return View();
         }
 
-        // POST: /ScoreCard/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,TotalScore,PlayerId,RoundId,Name")] ScoreCard scorecard)
+        public ActionResult Create([Bind(Include="Id,Name,TotalScore,PlayerId,RoundId")] ScoreCard scorecard)
         {
             if (ModelState.IsValid)
             {
@@ -80,12 +78,9 @@ namespace WebApplication4.Controllers
             return View(scorecard);
         }
 
-        // POST: /ScoreCard/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,TotalScore,PlayerId,RoundId,Name")] ScoreCard scorecard)
+        public ActionResult Edit([Bind(Include="Id,Name,TotalScore,PlayerId,RoundId")] ScoreCard scorecard)
         {
             if (ModelState.IsValid)
             {
@@ -118,6 +113,7 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            //Score scores = db.Scores.Find(id)
             ScoreCard scorecard = db.ScoreCards.Find(id);
             db.ScoreCards.Remove(scorecard);
             db.SaveChanges();

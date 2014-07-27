@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6e8c745d8da747e795522413fbde807d" Name="Diagram1">
+      <Diagram DiagramId="6e8c745d8da747e795522413fbde807d" Name="Diagram1" DisplayType="true">
         <EntityTypeShape EntityType="GolfDbModel.Course" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GolfDbModel.Hole" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GolfDbModel.Player" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GolfDbModel.Round" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GolfDbModel.ScoreCard" Width="1.5" PointX="7.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GolfDbModel.ScoreCard" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="GolfDbModel.FK_Hole_Course" ManuallyRouted="false" />
         <AssociationConnector Association="GolfDbModel.FK_Round_Course" ManuallyRouted="false" />
         <AssociationConnector Association="GolfDbModel.FK_ScoreCard_Player1" ManuallyRouted="false" />

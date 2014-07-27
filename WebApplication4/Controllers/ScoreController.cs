@@ -39,7 +39,7 @@ namespace WebApplication4.Controllers
         // GET: /Score/Create
         public ActionResult Create()
         {
-            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Id");
+            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Name");
             ViewBag.Holeid = new SelectList(db.Holes, "Id", "_Name");
             return View();
         }
@@ -58,7 +58,7 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Id", score.ScoreCardid);
+            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Name", score.ScoreCardid);
             ViewBag.Holeid = new SelectList(db.Holes, "Id", "_Name", score.Holeid);
             return View(score);
         }
@@ -93,7 +93,7 @@ namespace WebApplication4.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Id", score.ScoreCardid);
+            ViewBag.ScoreCardid = new SelectList(db.ScoreCards, "Id", "Name", score.ScoreCardid);
             ViewBag.Holeid = new SelectList(db.Holes, "Id", "_Name", score.Holeid);
             return View(score);
         }

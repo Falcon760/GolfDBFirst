@@ -4,11 +4,16 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>ScoreCard Details</h2>
 
 <div>
-    <h4>ScoreCard</h4>
+    <p>
+        @Html.ActionLink("Edit Details", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Add Score", "Create", "Score", new { id = Model.Id }, null) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 	<hr />
+   
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -18,19 +23,11 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TotalScore)
+            @Html.DisplayNameFor(model => model.Player.FullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TotalScore)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Player.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Player.LastName)
+            @Html.DisplayFor(model => model.Player.FullName)
         </dd>
 
         <dt>
@@ -43,11 +40,7 @@
         
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Add Score", "Create", "Score", new { id = Model.Id }, null) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 <hr />
 
 @*<div class="panel panel-default">
@@ -76,16 +69,18 @@
     </table>
         </div>
     </div>*@
-
 <table class="table table-bordered">
-@foreach (var item in Model.Scores) {
     <tr>
         <th>
             Hole Name
         </th>
-        <th>Score
+        <th>
+            Score
         </th>
     </tr>
+
+@foreach (var item in Model.Scores) {
+
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Hole._Name)
@@ -93,7 +88,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.Strokes)
         </td>
+            @{
+    item.ScoreCard.TotalScore = item.ScoreCard.TotalScore + item.Strokes;
+            }
+        
     </tr>
 }
-
+    <tr>
+        <td></td>
+        <td>
+            <h5>Total Score = @Html.DisplayFor(item => item.TotalScore)</h5>
+        </td>
+    </tr>
+   
 </table>
+
+

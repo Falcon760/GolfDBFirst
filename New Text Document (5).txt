@@ -1,0 +1,178 @@
+namespace WebApplication4
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    
+    public partial class Course
+    {
+        public Course()
+        {
+            this.Holes = new HashSet<Hole>();
+            this.Rounds = new HashSet<Round>();
+        }
+    
+        public int Id { get; set; }
+        [Display(Name="Course Name")]
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
+        public string Telephone { get; set; }
+    
+        public virtual ICollection<Hole> Holes { get; set; }
+        public virtual ICollection<Round> Rounds { get; set; }
+    }
+}
+
+namespace WebApplication4
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    
+    public partial class Hole
+    {
+        public Hole()
+        {
+            this.Rounds = new HashSet<Round>();
+            this.Scores = new HashSet<Score>();
+        }
+    
+        public int Id { get; set; }
+        [Range(1,18, ErrorMessage="Hole number must be between 1 and 18.")]
+        public int Number { get; set; }
+        public int Par { get; set; }
+        public Nullable<int> TotalYards { get; set; }
+        public Nullable<int> YardsFromBlue { get; set; }
+        public Nullable<int> YardsFromWhite { get; set; }
+        public Nullable<int> YardsFromRed { get; set; }
+        public int CourseId { get; set; }
+        public Nullable<int> Score { get; set; }
+        public string Name { get; set; }
+        [NotMapped]
+        [DisplayName("Hole Name")]
+        public string _Name { get { return Course.Name + " Hole " + Number; } }
+        public virtual Course Course { get; set; }
+        public virtual ICollection<Round> Rounds { get; set; }
+        public virtual ICollection<Score> Scores { get; set; }
+    }
+}
+
+
+namespace WebApplication4
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    
+    public partial class Player
+    {
+        public Player()
+        {
+            this.ScoreCards = new HashSet<ScoreCard>();
+            this.Rounds = new HashSet<Round>();
+        }
+    
+        public int Id { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public Nullable<int> Handicap { get; set; }
+        [NotMapped]
+        [Display(Name="Player Name")]
+        public string FullName { get { return FirstName + " " + LastName; } }
+        public virtual ICollection<ScoreCard> ScoreCards { get; set; }
+        public virtual ICollection<Round> Rounds { get; set; }
+    }
+}
+
+
+
+namespace WebApplication4
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    
+    public partial class Round
+    {
+        public Round()
+        {
+            this.ScoreCards = new HashSet<ScoreCard>();
+            this.Holes = new HashSet<Hole>();
+            this.Players = new HashSet<Player>();
+        }
+    
+        public int Id { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name="Date of Round")]
+        public System.DateTime RoundDate { get; set; }
+        [Display(Name="Round Name")]
+        public string Name { get; set; }
+        [Display(Name="Course Name")]
+        public int CourseId { get; set; }
+       
+        public virtual Course Course { get; set; }
+        public virtual ICollection<ScoreCard> ScoreCards { get; set; }
+        public virtual ICollection<Hole> Holes { get; set; }
+        public virtual ICollection<Player> Players { get; set; }
+    }
+}
+
+
+
+
+namespace WebApplication4
+{
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Score
+    {
+        public int id { get; set; }
+        public int ScoreCardid { get; set; }
+        public Nullable<int> Strokes { get; set; }
+        public int Holeid { get; set; }
+    
+        public virtual ScoreCard ScoreCard { get; set; }
+        public virtual Hole Hole { get; set; }
+    }
+}
+
+
+
+
+namespace WebApplication4
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    
+    public partial class ScoreCard
+    {
+        public ScoreCard()
+        {
+            this.Scores = new HashSet<Score>();
+        }
+    
+        public int Id { get; set; }
+        [Display(Name="Total Score")]
+        [DisplayFormat(DataFormatString="{0:# Strokes}", ApplyFormatInEditMode=true, NullDisplayText="No Total Score")]
+        public Nullable<int> TotalScore { get; set; }
+        public int PlayerId { get; set; }
+        public int RoundId { get; set; }
+        [DisplayName("ScoreCard Name")]
+        public string Name { get; set; }
+    
+        public virtual Player Player { get; set; }
+        public virtual Round Round { get; set; }
+        public virtual ICollection<Score> Scores { get; set; }
+    }
+}

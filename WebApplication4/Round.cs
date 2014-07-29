@@ -11,8 +11,6 @@ namespace WebApplication4
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Round
     {
@@ -24,15 +22,10 @@ namespace WebApplication4
         }
     
         public int Id { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Name="Date of Round")]
         public System.DateTime RoundDate { get; set; }
-        [Display(Name="Round Name")]
         public string Name { get; set; }
-        [Display(Name="Course Name")]
         public int CourseId { get; set; }
-       
+    
         public virtual Course Course { get; set; }
         public virtual ICollection<ScoreCard> ScoreCards { get; set; }
         public virtual ICollection<Hole> Holes { get; set; }

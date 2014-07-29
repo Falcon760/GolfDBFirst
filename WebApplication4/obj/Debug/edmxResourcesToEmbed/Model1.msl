@@ -32,6 +32,7 @@
     <EntitySetMapping Name="Players">
       <EntityTypeMapping TypeName="GolfDbModel.Player">
         <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -79,10 +80,27 @@
     <EntitySetMapping Name="Scores">
       <EntityTypeMapping TypeName="GolfDbModel.Score">
         <MappingFragment StoreEntitySet="Score">
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="Par5Average" ColumnName="Par5Average" />
+          <ScalarProperty Name="Par4Average" ColumnName="Par4Average" />
+          <ScalarProperty Name="Par3Average" ColumnName="Par3Average" />
+          <ScalarProperty Name="FairwayHit" ColumnName="FairwayHit" />
+          <ScalarProperty Name="SandSaveCount" ColumnName="SandSaveCount" />
+          <ScalarProperty Name="AverageDrive" ColumnName="AverageDrive" />
+          <ScalarProperty Name="DrivingDist" ColumnName="DrivingDist" />
+          <ScalarProperty Name="PuttCount" ColumnName="PuttCount" />
+          <ScalarProperty Name="PuttLength" ColumnName="PuttLength" />
           <ScalarProperty Name="Holeid" ColumnName="Holeid" />
           <ScalarProperty Name="Strokes" ColumnName="Strokes" />
           <ScalarProperty Name="ScoreCardid" ColumnName="ScoreCardid" />
           <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Combineds">
+      <EntityTypeMapping TypeName="GolfDbModel.Combined">
+        <MappingFragment StoreEntitySet="Combined">
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

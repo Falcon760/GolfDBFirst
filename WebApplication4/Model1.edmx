@@ -5,6 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GolfDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Combined">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="Id" />
@@ -39,6 +45,7 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Handicap" Type="int" />
+          <Property Name="Comments" Type="text" />
         </EntityType>
         <EntityType Name="Round">
           <Key>
@@ -73,6 +80,16 @@
           <Property Name="ScoreCardid" Type="int" Nullable="false" />
           <Property Name="Strokes" Type="int" />
           <Property Name="Holeid" Type="int" Nullable="false" />
+          <Property Name="PuttLength" Type="int" />
+          <Property Name="PuttCount" Type="int" />
+          <Property Name="DrivingDist" Type="int" />
+          <Property Name="AverageDrive" Type="int" />
+          <Property Name="SandSaveCount" Type="int" />
+          <Property Name="FairwayHit" Type="bit" />
+          <Property Name="Par3Average" Type="int" />
+          <Property Name="Par4Average" Type="int" />
+          <Property Name="Par5Average" Type="int" />
+          <Property Name="Comments" Type="text" />
         </EntityType>
         <EntityType Name="ScoreCard">
           <Key>
@@ -84,6 +101,30 @@
           <Property Name="PlayerId" Type="int" Nullable="false" />
           <Property Name="RoundId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Combined_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Combined" Type="Self.Combined" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Combined">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Combined_ScoreCard">
+          <End Role="ScoreCard" Type="Self.ScoreCard" Multiplicity="1" />
+          <End Role="Combined" Type="Self.Combined" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ScoreCard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Combined">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Hole_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
           <End Role="Hole" Type="Self.Hole" Multiplicity="*" />
@@ -205,6 +246,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="GolfDbModelStoreContainer">
+          <EntitySet Name="Combined" EntityType="Self.Combined" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hole" EntityType="Self.Hole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
@@ -213,6 +255,14 @@
           <EntitySet Name="RoundPlayer" EntityType="Self.RoundPlayer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ScoreCard" EntityType="Self.ScoreCard" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Combined_Player" Association="Self.FK_Combined_Player">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="Combined" EntitySet="Combined" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Combined_ScoreCard" Association="Self.FK_Combined_ScoreCard">
+            <End Role="ScoreCard" EntitySet="ScoreCard" />
+            <End Role="Combined" EntitySet="Combined" />
+          </AssociationSet>
           <AssociationSet Name="FK_Hole_Course" Association="Self.FK_Hole_Course">
             <End Role="Course" EntitySet="Course" />
             <End Role="Hole" EntitySet="Hole" />
@@ -299,6 +349,8 @@
           <Property Name="Handicap" Type="Int32" />
           <NavigationProperty Name="ScoreCards" Relationship="Self.FK_ScoreCard_Player1" FromRole="Player" ToRole="ScoreCard" />
           <NavigationProperty Name="Rounds" Relationship="Self.RoundPlayer" FromRole="Player" ToRole="Round" />
+          <NavigationProperty Name="Combined" Relationship="GolfDbModel.FK_Combined_Player" FromRole="Player" ToRole="Combined" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Round">
           <Key>
@@ -324,7 +376,8 @@
           <NavigationProperty Name="Player" Relationship="Self.FK_ScoreCard_Player1" FromRole="ScoreCard" ToRole="Player" />
           <NavigationProperty Name="Round" Relationship="Self.FK_ScoreCard_Round" FromRole="ScoreCard" ToRole="Round" />
           <NavigationProperty Name="Scores" Relationship="GolfDbModel.FK_Score_ScoreCard" FromRole="ScoreCard" ToRole="Score" />
-          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Combined" Relationship="GolfDbModel.FK_Combined_ScoreCard" FromRole="ScoreCard" ToRole="Combined" />
         </EntityType>
         <Association Name="FK_Hole_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
@@ -421,6 +474,15 @@
             <End Role="Hole" EntitySet="Holes" />
             <End Role="Score" EntitySet="Scores" />
           </AssociationSet>
+          <EntitySet Name="Combineds" EntityType="GolfDbModel.Combined" />
+          <AssociationSet Name="FK_Combined_Player" Association="GolfDbModel.FK_Combined_Player">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Combined" EntitySet="Combineds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Combined_ScoreCard" Association="GolfDbModel.FK_Combined_ScoreCard">
+            <End Role="ScoreCard" EntitySet="ScoreCards" />
+            <End Role="Combined" EntitySet="Combineds" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Score">
           <Key>
@@ -432,6 +494,16 @@
           <Property Name="Strokes" Type="Int32" />
           <Property Name="Holeid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Hole" Relationship="GolfDbModel.FK_Score_Hole" FromRole="Score" ToRole="Hole" />
+          <Property Name="PuttLength" Type="Int32" />
+          <Property Name="PuttCount" Type="Int32" />
+          <Property Name="DrivingDist" Type="Int32" />
+          <Property Name="AverageDrive" Type="Int32" />
+          <Property Name="SandSaveCount" Type="Int32" />
+          <Property Name="FairwayHit" Type="Boolean" />
+          <Property Name="Par3Average" Type="Int32" />
+          <Property Name="Par4Average" Type="Int32" />
+          <Property Name="Par5Average" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Score_ScoreCard">
           <End Type="GolfDbModel.ScoreCard" Role="ScoreCard" Multiplicity="1" />
@@ -454,6 +526,38 @@
             </Principal>
             <Dependent Role="Score">
               <PropertyRef Name="Holeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Combined">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Player" Relationship="GolfDbModel.FK_Combined_Player" FromRole="Combined" ToRole="Player" />
+          <NavigationProperty Name="ScoreCard" Relationship="GolfDbModel.FK_Combined_ScoreCard" FromRole="Combined" ToRole="ScoreCard" />
+        </EntityType>
+        <Association Name="FK_Combined_Player">
+          <End Type="GolfDbModel.Player" Role="Player" Multiplicity="1" />
+          <End Type="GolfDbModel.Combined" Role="Combined" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Combined">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Combined_ScoreCard">
+          <End Type="GolfDbModel.ScoreCard" Role="ScoreCard" Multiplicity="1" />
+          <End Type="GolfDbModel.Combined" Role="Combined" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ScoreCard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Combined">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -494,6 +598,7 @@
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="GolfDbModel.Player">
               <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -541,10 +646,27 @@
           <EntitySetMapping Name="Scores">
             <EntityTypeMapping TypeName="GolfDbModel.Score">
               <MappingFragment StoreEntitySet="Score">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Par5Average" ColumnName="Par5Average" />
+                <ScalarProperty Name="Par4Average" ColumnName="Par4Average" />
+                <ScalarProperty Name="Par3Average" ColumnName="Par3Average" />
+                <ScalarProperty Name="FairwayHit" ColumnName="FairwayHit" />
+                <ScalarProperty Name="SandSaveCount" ColumnName="SandSaveCount" />
+                <ScalarProperty Name="AverageDrive" ColumnName="AverageDrive" />
+                <ScalarProperty Name="DrivingDist" ColumnName="DrivingDist" />
+                <ScalarProperty Name="PuttCount" ColumnName="PuttCount" />
+                <ScalarProperty Name="PuttLength" ColumnName="PuttLength" />
                 <ScalarProperty Name="Holeid" ColumnName="Holeid" />
                 <ScalarProperty Name="Strokes" ColumnName="Strokes" />
                 <ScalarProperty Name="ScoreCardid" ColumnName="ScoreCardid" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Combineds">
+            <EntityTypeMapping TypeName="GolfDbModel.Combined">
+              <MappingFragment StoreEntitySet="Combined">
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

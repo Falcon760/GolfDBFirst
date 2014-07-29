@@ -122,6 +122,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Combined.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CombinedController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -251,6 +255,11 @@
     <Content Include="Views\Score\Details.cshtml" />
     <Content Include="Views\Score\Edit.cshtml" />
     <Content Include="Views\Score\Index.cshtml" />
+    <Content Include="Views\Combined\Create.cshtml" />
+    <Content Include="Views\Combined\Delete.cshtml" />
+    <Content Include="Views\Combined\Details.cshtml" />
+    <Content Include="Views\Combined\Edit.cshtml" />
+    <Content Include="Views\Combined\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,18 +1,87 @@
-﻿@{
+﻿@model IEnumerable<WebApplication4.Combined>
+
+@{
     ViewBag.Title = "Home Page";
 }
 @using WebApplication4.Models
 
-<div class="jumbotron">
-    <h1>@Html.Image("/Content/Golf1.jpg", "alt", "100") Golf Tracker</h1>
-    <p class="lead">The Golf Tracker tracks golf.</p>
-    
+<div class="page-header">
+    <h1>
+        @Html.Image("/Content/Golf1.jpg", "alt", "100") Golf Tracker
+        <small>Statistics and Analysis</small>
+    </h1>
 </div>
+<p>
+    This is your Golf Tracker.  It records rounds, scores, and statistics about the golf you play.
+    It can also hold names and information about your friends.
+</p>
+
 
 <div class="row">
+
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        @Html.Image("/Content/Golf2.jpg","alt","300")
+        <h2>Players</h2>
+        <table class="table table-hover">
+       
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                  
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
-   
+   <div class="col-md-4">
+       <h2>ScoreCards</h2>
+      
+       <table class="table table-hover">
+
+           @foreach (var item in Model)
+           {
+               <tr>
+                   <td>
+                       @Html.DisplayFor(modelItem => item.Combined.ScoreCard.Name)
+                   </td>
+
+                   <td>
+                       @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                       @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                       @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                   </td>
+               </tr>
+           }
+
+       </table>
+
+
+
+
+
+
+
+
+
+   </div>
+    <div class="col-md-4">
+        <h2>Even More Text</h2>
+        This is a third column of text.  It has more text.
+
+    </div>
+
+</div>
+<div class="col-lg-12">
+    <h2>Chart</h2>
+    A chart goes here.  This is where a chart goes.  It is right here. Somethign like a chart goes
+    here.  These are some words.  The words are here.  It is hard to type blah blah.  The blah
+    and the blah went blah.
+
 </div>

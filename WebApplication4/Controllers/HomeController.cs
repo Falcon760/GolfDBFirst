@@ -1,17 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication4;
 
 namespace WebApplication4.Controllers
 {
     public class HomeController : Controller
     {
+        private GolfDbEntities db = new GolfDbEntities();
+
         public ActionResult Index()
         {
-            return View();
-        }
+            //var combineds = db.Combineds.Include(c => c.Player).Include(c => c.ScoreCard);
+            //return View(combineds.ToList());
+            //var combineds2 = from n in db.Players
+            //                 select n;
+            //return View(combineds2.ToList());
+            //return View();
+
+            IQueryable<Combined> data = from p in db.Players
+                                        group p by p.Handicap into HandicapGroup
+                                        select new Combined() { Handicap = HandicapGroup.Key, PlayerCount = HandicapGroup.Count() };
+            return View(data.ToList());
+         }
+
+
+
+
+        
 
         public ActionResult About()
         {

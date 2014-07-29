@@ -19,6 +19,9 @@
         <EntityTypeShape EntityType="GolfDbModel.Score" Width="1.5" PointX="10.25" PointY="3.25" />
         <AssociationConnector Association="GolfDbModel.FK_Score_ScoreCard" />
         <AssociationConnector Association="GolfDbModel.FK_Score_Hole" />
+        <EntityTypeShape EntityType="GolfDbModel.Combined" Width="1.5" PointX="12.75" PointY="4.75" />
+        <AssociationConnector Association="GolfDbModel.FK_Combined_Player" />
+        <AssociationConnector Association="GolfDbModel.FK_Combined_ScoreCard" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

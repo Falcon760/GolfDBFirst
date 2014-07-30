@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GolfDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Combined">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-  </EntityType>
   <EntityType Name="Course">
     <Key>
       <PropertyRef Name="Id" />
@@ -96,30 +90,6 @@
     <Property Name="PlayerId" Type="int" Nullable="false" />
     <Property Name="RoundId" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_Combined_Player">
-    <End Role="Player" Type="Self.Player" Multiplicity="1" />
-    <End Role="Combined" Type="Self.Combined" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Player">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Combined">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Combined_ScoreCard">
-    <End Role="ScoreCard" Type="Self.ScoreCard" Multiplicity="1" />
-    <End Role="Combined" Type="Self.Combined" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="ScoreCard">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Combined">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Hole_Course">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="Hole" Type="Self.Hole" Multiplicity="*" />
@@ -241,7 +211,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="GolfDbModelStoreContainer">
-    <EntitySet Name="Combined" EntityType="Self.Combined" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hole" EntityType="Self.Hole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
@@ -250,14 +219,6 @@
     <EntitySet Name="RoundPlayer" EntityType="Self.RoundPlayer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ScoreCard" EntityType="Self.ScoreCard" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Combined_Player" Association="Self.FK_Combined_Player">
-      <End Role="Player" EntitySet="Player" />
-      <End Role="Combined" EntitySet="Combined" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Combined_ScoreCard" Association="Self.FK_Combined_ScoreCard">
-      <End Role="ScoreCard" EntitySet="ScoreCard" />
-      <End Role="Combined" EntitySet="Combined" />
-    </AssociationSet>
     <AssociationSet Name="FK_Hole_Course" Association="Self.FK_Hole_Course">
       <End Role="Course" EntitySet="Course" />
       <End Role="Hole" EntitySet="Hole" />

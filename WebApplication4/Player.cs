@@ -32,6 +32,5 @@ namespace WebApplication4
         public string FullName { get { return FirstName + " " + LastName; } }
         public virtual ICollection<ScoreCard> ScoreCards { get; set; }
         public virtual ICollection<Round> Rounds { get; set; }
-        public virtual Combined Combined { get; set; }
     }
 }

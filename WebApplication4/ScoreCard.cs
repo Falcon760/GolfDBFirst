@@ -11,15 +11,19 @@ namespace WebApplication4
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class ScoreCard
     {
         public ScoreCard()
         {
+            this.TotalScore = 0;
             this.Scores = new HashSet<Score>();
         }
     
         public int Id { get; set; }
+        [Display(Name = "Total Score")]
+        [DisplayFormat(DataFormatString = "{0:# Strokes}", ApplyFormatInEditMode = true, NullDisplayText = "No Total Score")]
         public Nullable<int> TotalScore { get; set; }
         public int PlayerId { get; set; }
         public int RoundId { get; set; }
@@ -28,6 +32,5 @@ namespace WebApplication4
         public virtual Player Player { get; set; }
         public virtual Round Round { get; set; }
         public virtual ICollection<Score> Scores { get; set; }
-        public virtual Combined Combined { get; set; }
     }
 }

@@ -97,12 +97,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Combineds">
-      <EntityTypeMapping TypeName="GolfDbModel.Combined">
-        <MappingFragment StoreEntitySet="Combined">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

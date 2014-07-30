@@ -16,8 +16,8 @@ namespace WebApplication4.Controllers
 
         public ActionResult Index()
         {
-            var combineds = db.Combineds.Include(c => c.Player).Include(c => c.ScoreCard);
-            return View(combineds.ToList());
+            //var combineds = db.PlayerScoreCards.Include(c => c.Player).Include(c => c.ScoreCard);
+            //return View(combineds.ToList());
             //var combineds2 = from n in db.Players
             //                 select n;
             //return View(combineds2.ToList());
@@ -27,6 +27,11 @@ namespace WebApplication4.Controllers
             //                            group p by p.Handicap into HandicapGroup
             //                            select new Combined() { Handicap = HandicapGroup.Key, PlayerCount = HandicapGroup.Count() };
             //return View(data.ToList());
+           
+            var scorecards = db.ScoreCards.Include(s => s.Player).Include(s => s.Round);
+            return View(scorecards.ToList());
+
+
          }
 
 

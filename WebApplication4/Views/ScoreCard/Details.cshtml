@@ -89,7 +89,7 @@
             @Html.DisplayFor(modelItem => item.Strokes)
         </td>
             @{
-    item.ScoreCard.TotalScore = item.ScoreCard.TotalScore + item.Strokes;
+    item.ScoreCard.TotalScore += item.Strokes;
             }
         
     </tr>

@@ -44,10 +44,12 @@ namespace WebApplication4.Controllers
             return View();
         }
 
-       
+        // POST: /ScoreCard/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Name,TotalScore,PlayerId,RoundId")] ScoreCard scorecard)
+        public ActionResult Create([Bind(Include="Id,TotalScore,PlayerId,RoundId,Name")] ScoreCard scorecard)
         {
             if (ModelState.IsValid)
             {
@@ -78,9 +80,12 @@ namespace WebApplication4.Controllers
             return View(scorecard);
         }
 
+        // POST: /ScoreCard/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Name,TotalScore,PlayerId,RoundId")] ScoreCard scorecard)
+        public ActionResult Edit([Bind(Include="Id,TotalScore,PlayerId,RoundId,Name")] ScoreCard scorecard)
         {
             if (ModelState.IsValid)
             {
@@ -113,27 +118,6 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-//            [HttpPost, ActionName("Delete")]
-//[ValidateAntiForgeryToken]
-//public ActionResult DeleteConfirmed(int id)
-//{ Instructor instructor = db.Instructors 
-//    .Include(i => i.OfficeAssignment) 
-//    .Where(i => i.ID == id) .Single();
-//instructor.OfficeAssignment = null;
-//db.Instructors.Remove(instructor);
-//var department = db.Departments 
-            //.Where(d => d.InstructorID == id) 
-            //.SingleOrDefault(); 
-            //if (department != null) 
-            //{ department.InstructorID = null; }
-//db.SaveChanges();
-//return RedirectToAction("Index");
-//}
-
-
-
-
-            
             ScoreCard scorecard = db.ScoreCards.Find(id);
             db.ScoreCards.Remove(scorecard);
             db.SaveChanges();

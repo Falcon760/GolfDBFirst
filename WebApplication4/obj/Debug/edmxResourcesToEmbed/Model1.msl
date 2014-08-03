@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Courses">
       <EntityTypeMapping TypeName="GolfDbModel.Course">
         <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="City" ColumnName="City" />
@@ -43,6 +44,7 @@
     <EntitySetMapping Name="Rounds">
       <EntityTypeMapping TypeName="GolfDbModel.Round">
         <MappingFragment StoreEntitySet="Round">
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="RoundDate" ColumnName="RoundDate" />
           <ScalarProperty Name="Name" ColumnName="Name" />

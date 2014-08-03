@@ -15,6 +15,7 @@
           <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Zip" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Hole">
           <Key>
@@ -49,6 +50,7 @@
           <Property Name="RoundDate" Type="datetime" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="RoundHole">
           <Key>
@@ -281,6 +283,7 @@
           <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Holes" Relationship="Self.FK_Hole_Course" FromRole="Course" ToRole="Hole" />
           <NavigationProperty Name="Rounds" Relationship="Self.FK_Round_Course" FromRole="Course" ToRole="Round" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Hole">
           <Key>
@@ -324,6 +327,7 @@
           <NavigationProperty Name="ScoreCards" Relationship="Self.FK_ScoreCard_Round" FromRole="Round" ToRole="ScoreCard" />
           <NavigationProperty Name="Holes" Relationship="Self.RoundHole" FromRole="Round" ToRole="Hole" />
           <NavigationProperty Name="Players" Relationship="Self.RoundPlayer" FromRole="Round" ToRole="Player" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ScoreCard">
           <Key>
@@ -488,6 +492,7 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="GolfDbModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="City" ColumnName="City" />
@@ -527,6 +532,7 @@
           <EntitySetMapping Name="Rounds">
             <EntityTypeMapping TypeName="GolfDbModel.Round">
               <MappingFragment StoreEntitySet="Round">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RoundDate" ColumnName="RoundDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

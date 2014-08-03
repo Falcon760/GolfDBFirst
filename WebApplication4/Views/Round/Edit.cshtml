@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RoundDate, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoundDate, "Date of Round", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RoundDate)
                 @Html.ValidationMessageFor(model => model.RoundDate)
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, "Round Name", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
@@ -34,12 +34,23 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CourseId, "CourseId", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CourseId, "Course Name", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("CourseId", String.Empty)
                 @Html.ValidationMessageFor(model => model.CourseId)
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comments, "Comments", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Comments)
+                @Html.ValidationMessageFor(model => model.Comments)
+            </div>
+        </div>
+
+
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

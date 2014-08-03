@@ -11,6 +11,7 @@ namespace WebApplication4
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     
     public partial class ScoreCard
@@ -22,11 +23,14 @@ namespace WebApplication4
         }
     
         public int Id { get; set; }
-        [Display(Name = "Total Score")]
-        [DisplayFormat(DataFormatString = "{0:# Strokes}", ApplyFormatInEditMode = true, NullDisplayText = "No Total Score")]
+        [Display(Name="Total Score")]
+        [DisplayFormat(DataFormatString="{0:# Strokes}", ApplyFormatInEditMode=true, NullDisplayText="No Total Score")]
         public Nullable<int> TotalScore { get; set; }
+        [DisplayName("Player Name")]
         public int PlayerId { get; set; }
+        [DisplayName("Round Name")]
         public int RoundId { get; set; }
+        [DisplayName("ScoreCard Name")]
         public string Name { get; set; }
     
         public virtual Player Player { get; set; }

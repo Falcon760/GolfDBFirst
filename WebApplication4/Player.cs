@@ -30,6 +30,7 @@ namespace WebApplication4
         [NotMapped]
         [Display(Name = "Player Name")]
         public string FullName { get { return FirstName + " " + LastName; } }
+    
         public virtual ICollection<ScoreCard> ScoreCards { get; set; }
         public virtual ICollection<Round> Rounds { get; set; }
     }

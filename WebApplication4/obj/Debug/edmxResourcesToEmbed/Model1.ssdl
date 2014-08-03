@@ -10,6 +10,7 @@
     <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Zip" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Hole">
     <Key>
@@ -44,6 +45,7 @@
     <Property Name="RoundDate" Type="datetime" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="RoundHole">
     <Key>

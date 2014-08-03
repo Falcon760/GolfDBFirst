@@ -118,7 +118,12 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ScoreCard scorecard = db.ScoreCards.Find(id);
+            //ScoreCard scorecard = db.ScoreCards.Find(id);
+
+            ScoreCard scorecard = db.ScoreCards.Include(i => i.Scores).Where(i => i.Id == id).Include(i => i.Round).Where(i => i.Id == id).Include(i => i.Player).Where(i => i.Id == id).Single();
+            //Recipe recipe = db.Recipes.Include(i => i.RecipeIngredients).Where(i => i.Id == id).Single();
+
+
             db.ScoreCards.Remove(scorecard);
             db.SaveChanges();
             return RedirectToAction("Index","Home");

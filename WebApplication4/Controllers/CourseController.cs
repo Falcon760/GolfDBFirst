@@ -52,7 +52,7 @@ namespace WebApplication4.Controllers
             {
                 db.Courses.Add(course);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreatE","Hole");
             }
 
             return View(course);

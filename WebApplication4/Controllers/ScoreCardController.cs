@@ -55,7 +55,7 @@ namespace WebApplication4.Controllers
             {
                 db.ScoreCards.Add(scorecard);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName", scorecard.PlayerId);
@@ -91,7 +91,7 @@ namespace WebApplication4.Controllers
             {
                 db.Entry(scorecard).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             ViewBag.PlayerId = new SelectList(db.Players, "Id", "LastName", scorecard.PlayerId);
             ViewBag.RoundId = new SelectList(db.Rounds, "Id", "Name", scorecard.RoundId);
@@ -121,7 +121,7 @@ namespace WebApplication4.Controllers
             ScoreCard scorecard = db.ScoreCards.Find(id);
             db.ScoreCards.Remove(scorecard);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         protected override void Dispose(bool disposing)

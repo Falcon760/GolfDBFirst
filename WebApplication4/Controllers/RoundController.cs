@@ -83,7 +83,7 @@ namespace WebApplication4.Controllers
             {
                 db.Rounds.Add(round);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create","ScoreCard");
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", round.CourseId);

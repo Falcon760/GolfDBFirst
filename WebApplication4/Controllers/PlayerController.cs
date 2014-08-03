@@ -52,7 +52,7 @@ namespace WebApplication4.Controllers
             {
                 db.Players.Add(player);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create","Course");
             }
 
             return View(player);
@@ -84,7 +84,7 @@ namespace WebApplication4.Controllers
             {
                 db.Entry(player).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             return View(player);
         }

@@ -20,10 +20,10 @@
 <table>
     <tr>
 <td> @Html.ActionLink("Create New Profile", "Create", "Player")</td>
-    @*<tr>
+    <tr>
 <td>@Html.ActionLink("Create New Round", "Create", "Round")</td></tr>
     <tr>
-<td>@Html.ActionLink("Create New ScoreCard","Create","ScoreCard")</td></tr>*@
+@*<td>@Html.ActionLink("Create New ScoreCard","Create","ScoreCard")</td></tr>*@
    
     </table>
 <div class="row">
@@ -41,7 +41,6 @@
                     </td>
                   
                     <td>
-                        @Html.ActionLink("Edit", "Edit", "Player", new { id = item.PlayerId }, null) |
                         @Html.ActionLink("Details", "Details","Player", new { id = item.PlayerId }, null)
                     </td>
                 </tr>
@@ -65,7 +64,6 @@
                     </td>
 
                     <td>
-                        @Html.ActionLink("Edit", "Edit", "Round", new { id = item.RoundId }, null) |
                         @Html.ActionLink("Details", "Details", "Round", new { id = item.RoundId }, null)
                     </td>
                 </tr>
@@ -88,7 +86,6 @@
                     </td>
 
                     <td>
-                        @Html.ActionLink("Edit", "Edit", "ScoreCard", new { id = item.Id }, null) |
                         @Html.ActionLink("Details", "Details", "ScoreCard", new { id = item.Id }, null) |
                         @Html.ActionLink("Delete", "Delete", "ScoreCard", new { id = item.Id }, null)
                     </td>

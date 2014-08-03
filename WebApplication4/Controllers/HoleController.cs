@@ -55,7 +55,7 @@ namespace WebApplication4.Controllers
             {
                 db.Holes.Add(hole);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Round");
+                return RedirectToAction("Create", "Hole");
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", hole.CourseId);

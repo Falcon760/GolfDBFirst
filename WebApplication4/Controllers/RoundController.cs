@@ -33,7 +33,6 @@ namespace WebApplication4.Controllers
                     items = from t in db.Rounds
                              where
                                  t.Name.Contains(SearchBox)
-                                 //|| t.RoundDate.Contains(SearchBox)
                                  || t.Course.Name.Contains(SearchBox)
                              select t;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>DateTimeGenerator</id>
+    <version>0.1.21</version>
+    <title>DateTimeGenerator</title>
+    <authors>HTW Berlin</authors>
+    <owners>HTW Berlin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This class generates daily, weekly, monthly and yearly date time occurence. It works like google calendar.</description>
+    <copyright>Copyright ©  HTW Berlin 2013</copyright>
+    <dependencies>
+      <dependency id="PGK.Extensions" version="2011.6" />
+    </dependencies>
+  </metadata>
+</package>

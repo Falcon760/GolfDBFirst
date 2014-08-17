@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Create";
 }
+@using DateTimeGenerator;
+
 
 <h2>Create</h2>
 
@@ -19,6 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RoundDate, "Round Date", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @*@Html.DatePickerFor(model=>model.RoundDate)*@
                 @Html.EditorFor(model => model.RoundDate)
                 @Html.ValidationMessageFor(model => model.RoundDate)
             </div>

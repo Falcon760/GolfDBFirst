@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<WebApplication4.ScoreCard>
-
+<script src="~/Scripts/jquery-1.5.1.min.js"></script>
+<script src="~/Scripts/Highcharts-2.2.1/js/highcharts.js"></script>
 
 @{
     ViewBag.Title = "Home Page";
@@ -100,14 +101,7 @@
 
 
 </div>
-<div class="col-lg-12">
-    @*<h2>Chart</h2>
-    A chart goes here.  This is where a chart goes.  It is right here. Somethign like a chart goes
-    here.  These are some words.  The words are here.  It is hard to type blah blah.  The blah
-    and the blah went blah.*@
-
-
-
-
+<div class="col-lg-12" id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
+    @Html.ActionLink("Example Report", "Index", "Report")
 
 </div>
